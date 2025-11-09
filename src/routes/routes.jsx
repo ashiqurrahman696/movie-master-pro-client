@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import AddMovie from "../pages/AddMovie";
 import PrivateRoute from "./PrivateRoute";
+import AllMovies from "../pages/AllMovies";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
             {
                 path: "/login",
                 Component: Login,
+            },
+            {
+                path: "/movies",
+                Component: AllMovies,
+                loader: () => fetch("http://localhost:3000/movies")
             },
             {
                 path: "/add-movie",
