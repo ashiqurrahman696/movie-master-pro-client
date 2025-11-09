@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Stats from "../components/Stats";
 import TopRatedMovies from "../components/TopRatedMovies";
 import RecentMovies from "../components/RecentMovies";
+import AboutPlatform from "../components/AboutPlatform";
 
 const Home = () => {
     const movies = useLoaderData();
@@ -12,6 +13,7 @@ const Home = () => {
             <Stats movies={movies} />
             <TopRatedMovies/>
             <RecentMovies/>
+            <AboutPlatform/>
         </div>
     );
 };
