@@ -17,6 +17,7 @@ const AddMovie = () => {
             language: form.language.value,
             country: form.country.value,
             addedBy: form.added_by.value,
+            createdAt: new Date(),
         }
         fetch("http://localhost:3000/movies", {
             method: "POST",
