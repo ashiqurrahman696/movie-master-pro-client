@@ -12,14 +12,6 @@ const Login = () => {
                             <p className="text-center">Don't have an account? Please <Link to="/register" className="text-blue-500 hover:underline">Register</Link></p>
                             <form className="space-y-4">
                                 <div>
-                                    <label className="label">Name</label>
-                                    <input type="text" name="name" className="input w-full" placeholder="Name" />
-                                </div>
-                                <div>
-                                    <label className="label">Image URL</label>
-                                    <input type="text" name="image" className="input w-full" placeholder="Image URL" />
-                                </div>
-                                <div>
                                     <label className="label">Email</label>
                                     <input type="text" name="email" className="input w-full" placeholder="Email" />
                                 </div>
