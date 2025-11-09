@@ -1,16 +1,74 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { singInWithGoogle, createUser, updateUser, setUser, setLoading } = use(AuthContext);
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const min6Pattern = /^.{6,}$/;
+    const casePattern = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+
+    const handleRegister = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const imageURL = form.image.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        if(!name){
+            toast.error("Name can't be empty");
+            return;
+        }
+
+        else if(!imageURL){
+            toast.error("Image URL can't be empty");
+            return;
+        }
+
+        else if(!email){
+            toast.error("Email can't be empty");
+            return;
+        }
+
+        else if(!emailPattern.test(email)){
+            toast.error("Invalid email");
+            return;
+        }
+
+        else if(!min6Pattern.test(password)){
+            toast.error("Password must be at least 6 characters long");
+            return;
+        }
+
+        else if(!casePattern.test(password)){
+            toast.error("Password must contain at least one uppercase and one lowercase letter");
+            return;
+        }
+
+        createUser(email, password)
+            .then((result) => {
+                const userInfo = result.user;
+                updateUser(name, email).then(() => {
+                    setUser(userInfo);
+                    setLoading(false);
+                    console.log(userInfo);
+                    toast.success("Registered successfully");
+                })
+            }).catch(error => {
+                toast.error(error.code);
+            });
+    }
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <div className="card bg-base-300 w-full max-w-sm mx-auto">
                 <div className="card-body gap-4">
                 <h1 className="text-center font-semibold text-4xl">Register</h1>
                 <p className="text-center">Already have an account? Please <Link to="/login" className="text-blue-500 hover:underline">Login</Link></p>
-                    <form className="space-y-4">
+                    <form onSubmit={handleRegister} className="space-y-4">
                         <div>
                             <label className="label">Name</label>
                             <input type="text" name="name" className="input w-full" placeholder="Name" />
