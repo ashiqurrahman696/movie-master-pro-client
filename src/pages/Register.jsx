@@ -1,12 +1,12 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
-import { AuthContext } from "../contexts/AuthContext";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { singInWithGoogle, createUser, updateUser, setUser, setLoading } = use(AuthContext);
+    const { singInWithGoogle, createUser, updateUser, setUser, setLoading } = useAuth();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const min6Pattern = /^.{6,}$/;
     const casePattern = /^(?=.*[a-z])(?=.*[A-Z]).+$/;

@@ -1,12 +1,12 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { Link } from "react-router";
-import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { singInWithGoogle, signInUser, setUser, setLoading } = use(AuthContext);
+    const { singInWithGoogle, signInUser, setUser, setLoading } = useAuth();
 
     const handleLogin = e => {
         e.preventDefault();
