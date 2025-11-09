@@ -1,5 +1,4 @@
 import { useLoaderData } from "react-router";
-import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 
 const UpdateMovie = () => {
