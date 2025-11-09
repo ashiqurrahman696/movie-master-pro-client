@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { singInWithGoogle, signInUser, setUser, setLoading } = useAuth();
+    const { singInWithGoogle, user, signInUser, setUser, setLoading } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user && user?.email) navigate(`${location.state ? location.state : "/"}`);
+    }, [navigate, user, location]);
 
     const handleLogin = e => {
         e.preventDefault();
