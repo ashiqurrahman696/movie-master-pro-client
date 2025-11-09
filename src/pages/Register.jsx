@@ -58,9 +58,28 @@ const Register = () => {
             .then((result) => {
                 const userInfo = result.user;
                 updateUser(name, imageURL).then(() => {
-                    setUser(userInfo);
-                    setLoading(false);
-                    toast.success("Registered successfully");
+                    const newUser = {
+                        name: userInfo.displayName,
+                        email: userInfo.email,
+                        image: userInfo.photoURL
+                    }
+                    fetch("http://localhost:3000/users", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(newUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.message) {
+                                toast.warn(data.message);
+                                return;
+                            }
+                            setUser(userInfo);
+                            setLoading(false);
+                            toast.success("Registered successfully");
+                        })
                 })
             }).catch(error => {
                 toast.error(error.code);
