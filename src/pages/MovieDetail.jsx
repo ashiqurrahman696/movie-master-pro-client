@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import useAuth from "../hooks/useAuth";
 
 const MovieDetail = () => {
@@ -20,7 +20,7 @@ const MovieDetail = () => {
                 <p><strong>Country:</strong> {country}</p>
                 <p><strong>Added by:</strong> {addedBy}</p>
                 {user?.email === addedBy && <div className="flex gap-2">
-                    <button className="btn btn-info">Edit</button>
+                    <Link to={`/movies/update/${_id}`} className="btn btn-info">Edit</Link>
                     <button className="btn btn-error">Delete</button>
                 </div>}
             </div>

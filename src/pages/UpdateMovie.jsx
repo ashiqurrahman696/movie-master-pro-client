@@ -1,0 +1,71 @@
+import { useLoaderData } from "react-router";
+import useAuth from "../hooks/useAuth";
+
+const UpdateMovie = () => {
+    const {user} = useAuth();
+    const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
+    return (
+        <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
+            <h1 className="text-center font-semibold text-4xl">Update Movie</h1>
+            <div className="card bg-base-300 w-full max-w-3xl mx-auto">
+                <div className="card-body">
+                    <form className="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="label">Title</label>
+                            <input type="text" name="title" defaultValue={title} className="input w-full" placeholder="Title" />
+                        </div>
+                        <div>
+                            <label className="label">Genre</label>
+                            <input type="text" name="genre" defaultValue={genre} className="input w-full" placeholder="Genre" />
+                        </div>
+                        <div>
+                            <label className="label">Release Year</label>
+                            <input type="text" name="release_year" defaultValue={releaseYear} className="input w-full" placeholder="Release Year" />
+                        </div>
+                        <div>
+                            <label className="label">Director</label>
+                            <input type="text" name="director" defaultValue={director} className="input w-full" placeholder="Director" />
+                        </div>
+                        <div>
+                            <label className="label">Cast</label>
+                            <input type="text" name="cast" defaultValue={cast} className="input w-full" placeholder="Cast" />
+                        </div>
+                        <div>
+                            <label className="label">Rating</label>
+                            <input type="text" name="rating" defaultValue={rating} className="input w-full" placeholder="Rating" />
+                        </div>
+                        <div>
+                            <label className="label">Duration</label>
+                            <input type="text" name="duration" defaultValue={duration} className="input w-full" placeholder="Duration" />
+                        </div>
+                        <div>
+                            <label className="label">Poster URL</label>
+                            <input type="text" name="poster_url" defaultValue={posterUrl} className="input w-full" placeholder="Poster URL" />
+                        </div>
+                        <div>
+                            <label className="label">Language</label>
+                            <input type="text" name="language" defaultValue={language} className="input w-full" placeholder="Language" />
+                        </div>
+                        <div>
+                            <label className="label">Country</label>
+                            <input type="text" name="country" defaultValue={country} className="input w-full" placeholder="Country" />
+                        </div>
+                        <div>
+                            <label className="label">Added by</label>
+                            <input type="text" disabled name="added_by" defaultValue={addedBy} className="input w-full" placeholder="Added by" />
+                        </div>
+                        <div className="col-span-full">
+                            <label className="label">Plot Summary</label>
+                            <textarea name="plot_summary" defaultValue={plotSummary} className="textarea w-full resize-none" placeholder="Plot Summary"></textarea>
+                        </div>
+                        <div className="col-span-full">
+                            <button className="btn btn-neutral btn-block">Update Movie</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default UpdateMovie;
