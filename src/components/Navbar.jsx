@@ -12,6 +12,9 @@ const Navbar = () => {
         <li>
             <NavLink to="/movies/my-collection">My Collection</NavLink>
         </li>
+        <li>
+            <NavLink to="/add-movie">Add Movie</NavLink>
+        </li>
     </>;
     return (
         <div className="drawer">

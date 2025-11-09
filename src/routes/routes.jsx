@@ -3,6 +3,7 @@ import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import AddMovie from "../pages/AddMovie";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
             {
                 path: "/login",
                 Component: Login,
+            },
+            {
+                path: "/add-movie",
+                Component: AddMovie,
             },
         ],
     },
