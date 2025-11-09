@@ -4,7 +4,7 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
                     <h1 className="text-center font-semibold text-4xl">Login</h1>
                     <div className="card bg-base-300 w-full max-w-sm mx-auto">
                         <div className="card-body gap-4">
