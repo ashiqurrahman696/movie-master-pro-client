@@ -62,7 +62,7 @@ const Navbar = () => {
                                     alt={user.displayName}
                                     src={user.photoURL} />
                             </div>
-                            <button  className="btn bg-orange-500 text-white">Logout</button>
+                            <button  className="btn btn-error">Logout</button>
                         </> : <>
                             <Link to="/login" className="btn btn-info">Login</Link>
                             <Link to="/register" className="btn btn-success">Register</Link>
