@@ -18,7 +18,7 @@ const Navbar = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="navbar bg-base-300 shadow-sm">
+                <div className="navbar bg-base-100 dark:bg-base-300 shadow-sm">
                     <div className="navbar-start">
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost">
