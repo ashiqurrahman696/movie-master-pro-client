@@ -1,0 +1,25 @@
+import { useLoaderData } from "react-router";
+
+const MovieDetail = () => {
+    const {_id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy} = useLoaderData();
+    return (
+        <div className="max-w-7xl mx-auto px-4 py-6 grid md:grid-cols-2 gap-5">
+            <img src={posterUrl} className="w-full rounded-md" />
+            <div className="space-y-4">
+                <h2 className="font-semibold text-5xl">{title}</h2>
+                <p>{plotSummary}</p>
+                <p><strong>Genre:</strong> {genre}</p>
+                <p><strong>Release year:</strong> {releaseYear}</p>
+                <p><strong>Director:</strong> {director}</p>
+                <p><strong>Cast:</strong> {cast}</p>
+                <p><strong>Duration:</strong> {duration >= 60 ? `${parseInt(duration / 60)}hr ${duration % 60}min` : `${duration}min`}</p>
+                <p><strong>Rating:</strong> {rating}</p>
+                <p><strong>Language:</strong> {language}</p>
+                <p><strong>Country:</strong> {country}</p>
+                <p><strong>Added by:</strong> {addedBy}</p>
+            </div>
+        </div>
+    );
+};
+
+export default MovieDetail;

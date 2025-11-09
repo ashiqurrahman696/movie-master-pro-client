@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const MovieCard = ({movie}) => {
     const {_id, title, posterUrl, genre, rating, releaseYear} = movie;
@@ -18,7 +19,7 @@ const MovieCard = ({movie}) => {
                     <p>{rating}</p>
                 </div>
                 <div className="card-actions">
-                    <button className="btn btn-info">View Details</button>
+                    <Link to={`/movies/${_id}`} className="btn btn-info">View Details</Link>
                 </div>
             </div>
         </div>
