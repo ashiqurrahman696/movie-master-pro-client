@@ -90,9 +90,25 @@ const Register = () => {
         singInWithGoogle()
             .then((result) => {
                 const userInfo = result.user;
-                setUser(userInfo);
-                setLoading(false);
-                toast.success("Google signup successful");
+                const newUser = {
+                    name: userInfo.displayName,
+                    email: userInfo.email,
+                    image: userInfo.photoURL
+                }
+                fetch("http://localhost:3000/users", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        setUser(userInfo);
+                        setLoading(false);
+                        toast.success("Google signup successful");
+                    })
             }).catch(error => {
                 toast.error(error.code);
             });
