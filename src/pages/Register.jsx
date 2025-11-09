@@ -52,7 +52,7 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const userInfo = result.user;
-                updateUser(name, email).then(() => {
+                updateUser(name, imageURL).then(() => {
                     setUser(userInfo);
                     setLoading(false);
                     toast.success("Registered successfully");
