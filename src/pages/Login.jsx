@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { Link } from "react-router";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
-                    <h1 className="text-center font-semibold text-4xl">Login</h1>
                     <div className="card bg-base-300 w-full max-w-sm mx-auto">
                         <div className="card-body gap-4">
+                            <h1 className="text-center font-semibold text-4xl">Login</h1>
+                            <p className="text-center">Don't have an account? Please <Link to="/register" className="text-blue-500 hover:underline">Register</Link></p>
                             <form className="space-y-4">
                                 <div>
                                     <label className="label">Name</label>
