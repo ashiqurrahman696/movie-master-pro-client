@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router";
+import useAuth from "../hooks/useAuth";
 
 const MovieDetail = () => {
+    const {user} = useAuth();
     const {_id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy} = useLoaderData();
     return (
         <div className="max-w-7xl mx-auto px-4 py-6 grid md:grid-cols-2 gap-5">
@@ -17,6 +19,10 @@ const MovieDetail = () => {
                 <p><strong>Language:</strong> {language}</p>
                 <p><strong>Country:</strong> {country}</p>
                 <p><strong>Added by:</strong> {addedBy}</p>
+                {user?.email === addedBy && <div className="flex gap-2">
+                    <button className="btn btn-info">Edit</button>
+                    <button className="btn btn-error">Delete</button>
+                </div>}
             </div>
         </div>
     );
