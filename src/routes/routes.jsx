@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllMovies from "../pages/AllMovies";
 import MovieDetail from "../pages/MovieDetail";
 import UpdateMovie from "../pages/UpdateMovie";
+import MyCollections from "../pages/MyCollections";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,12 @@ export const router = createBrowserRouter([
                 path: "/movies",
                 Component: AllMovies,
                 loader: () => fetch("http://localhost:3000/movies")
+            },
+            {
+                path: "/movies/my-collection",
+                element: <PrivateRoute>
+                    <MyCollections/>
+                </PrivateRoute>
             },
             {
                 path: "/add-movie",
