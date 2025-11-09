@@ -1,15 +1,47 @@
 import { useLoaderData } from "react-router";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const UpdateMovie = () => {
-    const {user} = useAuth();
     const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
+
+    const handleUpdateMovie = e => {
+        e.preventDefault();
+        const form = e.target;
+        const updatedMovie = {
+            title: form.title.value,
+            genre: form.genre.value,
+            releaseYear: Number(form.release_year.value),
+            director: form.director.value,
+            cast: form.cast.value,
+            rating: Number(form.rating.value),
+            duration: Number(form.duration.value),
+            plotSummary: form.plot_summary.value,
+            posterUrl: form.poster_url.value,
+            language: form.language.value,
+            country: form.country.value,
+        };
+
+        fetch(`http://localhost:3000/movies/${_id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedMovie)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.modifiedCount){
+                    toast.success("Movie updated successfully");
+                }
+            });
+    }
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <h1 className="text-center font-semibold text-4xl">Update Movie</h1>
             <div className="card bg-base-300 w-full max-w-3xl mx-auto">
                 <div className="card-body">
-                    <form className="grid md:grid-cols-2 gap-4">
+                    <form onSubmit={handleUpdateMovie} className="grid md:grid-cols-2 gap-4">
                         <div>
                             <label className="label">Title</label>
                             <input type="text" name="title" defaultValue={title} className="input w-full" placeholder="Title" />
