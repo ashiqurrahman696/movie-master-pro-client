@@ -1,16 +1,59 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { Link } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { singInWithGoogle, signInUser, setUser, setLoading } = use(AuthContext);
+
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "") {
+            toast.error("Email can't be empty");
+            return;
+        }
+        else if (!emailPattern.test(email)) {
+            toast.error("Invalid email");
+            return;
+        }
+        else if (password === "") {
+            toast.error("Password can't be empty");
+            return;
+        }
+        signInUser(email, password).then(result => {
+            const userInfo = result.user;
+            setLoading(false);
+            setUser(userInfo);
+            toast.success("Logged in successfully");
+        }).catch(error => {
+            toast.error(error.code);
+        });
+    }
+
+    const handleGoogleSignIn = () => {
+        singInWithGoogle()
+            .then((result) => {
+                const userInfo = result.user;
+                setUser(userInfo);
+                setLoading(false);
+                toast.success("Google login successful");
+            }).catch(error => {
+                toast.error(error.code);
+            });
+    }
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
                     <div className="card bg-base-300 w-full max-w-sm mx-auto">
                         <div className="card-body gap-4">
                             <h1 className="text-center font-semibold text-4xl">Login</h1>
                             <p className="text-center">Don't have an account? Please <Link to="/register" className="text-blue-500 hover:underline">Register</Link></p>
-                            <form className="space-y-4">
+                            <form onSubmit={handleLogin} className="space-y-4">
                                 <div>
                                     <label className="label">Email</label>
                                     <input type="text" name="email" className="input w-full" placeholder="Email" />
@@ -27,7 +70,7 @@ const Login = () => {
                                 </div>
                             </form>
                             <div>
-                                <button className="btn btn-block bg-white text-black border-[#e5e5e5]">
+                                <button onClick={handleGoogleSignIn} className="btn btn-block bg-white text-black border-[#e5e5e5]">
                                     <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
                                     Login with Google
                                 </button>
