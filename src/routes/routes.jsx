@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import AddMovie from "../pages/AddMovie";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +25,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/add-movie",
-                Component: AddMovie,
+                element: <PrivateRoute>
+                    <AddMovie/>
+                </PrivateRoute>,
             },
         ],
     },
