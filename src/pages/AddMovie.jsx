@@ -1,10 +1,44 @@
+import { toast } from "react-toastify";
+
 const AddMovie = () => {
+    const handleAddMovie = e => {
+        e.preventDefault();
+        const form = e.target;
+        const newMovie = {
+            title: form.title.value,
+            genre: form.genre.value,
+            releaseYear: Number(form.release_year.value),
+            director: form.director.value,
+            cast: form.cast.value,
+            rating: Number(form.rating.value),
+            duration: Number(form.duration.value),
+            plotSummary: form.plot_summary.value,
+            posterUrl: form.poster_url.value,
+            language: form.language.value,
+            country: form.country.value,
+            addedBy: form.added_by.value,
+        }
+        fetch("http://localhost:3000/movies", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newMovie)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    form.reset();
+                    toast.success("Movie added successfully");
+                }
+            });
+    }
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <h1 className="text-center font-semibold text-4xl">Add Movie</h1>
             <div className="card bg-base-300 w-full max-w-3xl mx-auto">
                 <div className="card-body">
-                    <form className="grid md:grid-cols-2 gap-4">
+                    <form onSubmit={handleAddMovie} className="grid md:grid-cols-2 gap-4">
                         <div>
                             <label className="label">Title</label>
                             <input type="text" name="title" className="input w-full" placeholder="Title" />
@@ -23,7 +57,7 @@ const AddMovie = () => {
                         </div>
                         <div>
                             <label className="label">Cast</label>
-                            <input type="text" name="seller_name" className="input w-full" placeholder="Cast" />
+                            <input type="text" name="cast" className="input w-full" placeholder="Cast" />
                         </div>
                         <div>
                             <label className="label">Rating</label>
