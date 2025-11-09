@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
 import Hero from "../components/Hero";
 import Stats from "../components/Stats";
+import TopRatedMovies from "../components/TopRatedMovies";
 
 const Home = () => {
     const movies = useLoaderData();
@@ -8,6 +9,7 @@ const Home = () => {
         <div>
             <Hero movies={movies} />
             <Stats movies={movies} />
+            <TopRatedMovies/>
         </div>
     );
 };
