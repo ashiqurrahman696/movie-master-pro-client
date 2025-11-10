@@ -5,7 +5,7 @@ import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
     return (
-        <div className="bg-neutral px-4 py-10">
+        <div className="bg-neutral px-4 py-10 text-white">
             <footer className="footer md:grid-cols-3 max-w-7xl mx-auto">
                 <aside>
                     <img src={logo} alt="MovieMaster Pro logo" className="w-10" />
