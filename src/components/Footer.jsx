@@ -39,6 +39,9 @@ const Footer = () => {
                     </div>
                 </nav>
             </footer>
+            <aside className="mt-8">
+                <p className="text-center">Copyright © {new Date().getFullYear()} - All right reserved by MovieMaster Pro</p>
+            </aside>
         </div>
     );
 };
