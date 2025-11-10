@@ -63,7 +63,8 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MovieDetail/>
                 </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/movies/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:3000/movies/${params.id}`), 
+                errorElement: <NotFound404/>
             },
         ],
     },

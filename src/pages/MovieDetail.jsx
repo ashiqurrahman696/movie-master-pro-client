@@ -3,10 +3,15 @@ import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { addToWatchlist } from "../utils/localStorage";
+import NotFound404 from "./NotFound404";
 
 const MovieDetail = () => {
     const {user} = useAuth();
     const {_id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy} = useLoaderData();
+
+    if(_id === undefined){
+        return <NotFound404/>;
+    }
 
     const handleAddToWatchlist = id => {
         addToWatchlist(id);
