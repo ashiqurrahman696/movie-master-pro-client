@@ -60,9 +60,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/movies/:id",
-                element: <PrivateRoute>
-                    <MovieDetail/>
-                </PrivateRoute>,
+                Component: MovieDetail,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_baseURL}/movies/${params.id}`), 
                 errorElement: <NotFound404/>
             },
