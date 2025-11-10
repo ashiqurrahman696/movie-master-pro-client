@@ -2,9 +2,17 @@ import { Link, NavLink } from "react-router";
 import logo from "../assets/logo.png"
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const Navbar = () => {
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light")
     const {user, signOutUser, setUser} = useAuth();
+    useEffect(() => {
+        const html = document.querySelector("html");
+        html.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
     const handleLogOut = () => {
         signOutUser().then(() => {
             setUser(null);
@@ -63,6 +71,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end gap-3">
+                        {theme === "light" ? <FaMoon onClick={() => setTheme("dark")} /> : <FaSun onClick={() => setTheme("light")} />}
                         {user ? <>
                             <div tabIndex={0} role="button" className="btn btn-ghost avatar tooltip tooltip-bottom" data-tip={user.displayName}>
                                 <img
