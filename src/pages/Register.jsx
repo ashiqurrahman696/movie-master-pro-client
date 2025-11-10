@@ -72,10 +72,6 @@ const Register = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            if (data.message) {
-                                toast.warn(data.message);
-                                return;
-                            }
                             setUser(userInfo);
                             setLoading(false);
                             toast.success("Registered successfully");
