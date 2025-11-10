@@ -23,4 +23,28 @@ export const genres = [
         id: 6,
         name: "Musical",
     },
+    {
+        id: 7,
+        name: "Action",
+    },
+    {
+        id: 8,
+        name: "Biography",
+    },
+    {
+        id: 9,
+        name: "Crime",
+    },
+    {
+        id: 10,
+        name: "Comedy",
+    },
+    {
+        id: 11,
+        name: "Adventure",
+    },
+    {
+        id: 12,
+        name: "Mystery",
+    },
 ];
