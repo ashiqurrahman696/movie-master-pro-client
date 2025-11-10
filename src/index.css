@@ -2,7 +2,3 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
-
-a.active {
-  @apply dark:text-[#fcf992] text-[#ebb754]
-}
