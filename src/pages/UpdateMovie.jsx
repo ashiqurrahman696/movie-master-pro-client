@@ -37,6 +37,8 @@ const UpdateMovie = () => {
                     setLoading(false);
                     toast.success("Movie updated successfully");
                 }
+            }).catch(error => {
+                toast.error(error.code);
             });
     }
     return (

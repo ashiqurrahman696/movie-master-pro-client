@@ -86,6 +86,7 @@ const Login = () => {
                                         {showPassword ? <LuEyeOff /> : <LuEye />}
                                     </button>
                                 </div>
+                                <p>Forgot password?</p>
                                 <div>
                                     <button className="btn btn-neutral btn-block">Login</button>
                                 </div>

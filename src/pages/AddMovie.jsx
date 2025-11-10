@@ -31,6 +31,8 @@ const AddMovie = () => {
                     form.reset();
                     toast.success("Movie added successfully");
                 }
+            }).catch(error => {
+                toast.error(error.code);
             });
     }
     return (
