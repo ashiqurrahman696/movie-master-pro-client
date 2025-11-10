@@ -34,7 +34,7 @@ const AboutPlatform = () => {
         },
     ];
     return (
-        <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
+        <div className="space-y-5 max-w-7xl mx-auto px-4 py-6" data-aos="flip-left">
             <h2 className="text-center font-semibold text-4xl">About the Platform</h2>
             <p className="text-center">MovieMaster Pro is your ultimate hub for discovering, reviewing, and managing everything about movies — from classics to the latest blockbusters.</p>
             <h3 className="text-center font-semibold text-3xl">Key Features</h3>
