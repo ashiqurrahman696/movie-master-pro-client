@@ -74,7 +74,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end gap-3">
-                        {theme === "light" ? <FaMoon onClick={() => setTheme("dark")} /> : <FaSun onClick={() => setTheme("light")} />}
+                        {theme === "light" ? <FaMoon onClick={() => setTheme("dark")} className="text-2xl" /> : <FaSun onClick={() => setTheme("light")} className="text-2xl" />}
                         {user ? <>
                             <div tabIndex={0} role="button" className="btn btn-ghost avatar tooltip tooltip-bottom" data-tip={user.displayName}>
                                 <img
