@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader: () => fetch("http://localhost:3000/movies")
+                loader: () => fetch(`${import.meta.env.VITE_baseURL}/movies`)
             },
             {
                 path: "/register",
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             {
                 path: "/my-watchlist",
                 Component: MyWatchList,
-                loader: () => fetch("http://localhost:3000/movies")
+                loader: () => fetch(`${import.meta.env.VITE_baseURL}/movies`)
             },
             {
                 path: "/movies",
@@ -56,14 +56,14 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateMovie/>
                 </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/movies/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_baseURL}/movies/${params.id}`)
             },
             {
                 path: "/movies/:id",
                 element: <PrivateRoute>
                     <MovieDetail/>
                 </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/movies/${params.id}`), 
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_baseURL}/movies/${params.id}`), 
                 errorElement: <NotFound404/>
             },
         ],
