@@ -10,6 +10,7 @@ import MovieDetail from "../pages/MovieDetail";
 import UpdateMovie from "../pages/UpdateMovie";
 import MyCollections from "../pages/MyCollections";
 import MyWatchList from "../pages/MyWatchList";
+import NotFound404 from "../pages/NotFound404";
 
 export const router = createBrowserRouter([
     {
@@ -65,5 +66,9 @@ export const router = createBrowserRouter([
                 loader: ({params}) => fetch(`http://localhost:3000/movies/${params.id}`)
             },
         ],
+    },
+    {
+        path: "*",
+        Component: NotFound404,
     },
 ]);
