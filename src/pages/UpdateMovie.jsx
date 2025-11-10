@@ -1,8 +1,10 @@
 import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
 import NotFound404 from "./NotFound404";
+import useAuth from "../hooks/useAuth";
 
 const UpdateMovie = () => {
+    const {setLoading} = useAuth();
     const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
 
     if(_id === undefined){
@@ -11,6 +13,7 @@ const UpdateMovie = () => {
 
     const handleUpdateMovie = e => {
         e.preventDefault();
+        setLoading(true);
         const form = e.target;
         const updatedMovie = {
             title: form.title.value,
@@ -36,6 +39,7 @@ const UpdateMovie = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.modifiedCount){
+                    setLoading(false);
                     toast.success("Movie updated successfully");
                 }
             });
