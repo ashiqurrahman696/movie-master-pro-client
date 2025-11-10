@@ -4,7 +4,7 @@ import AOS from "aos";
 const Stats = ({movies}) => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:3000/users").then(res => res.json()).then(data => {
+        fetch(`${import.meta.env.VITE_baseURL}/users`).then(res => res.json()).then(data => {
             setUsers(data);
             AOS.refresh();
         });

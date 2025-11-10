@@ -9,19 +9,19 @@ const AllMovies = () => {
     const [selectedGenres, setSelectedGenres] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/movies")
+        fetch(`${import.meta.env.VITE_baseURL}/movies`)
             .then(res => res.json())
             .then(data => setMovies(data));
     }, []);
 
     const applyRating = () => {
         if(option === "gt"){
-            fetch(`http://localhost:3000/rating-greater?rating=${ratingValue}`)
+            fetch(`${import.meta.env.VITE_baseURL}/rating-greater?rating=${ratingValue}`)
                 .then(res => res.json())
                 .then(data => setMovies(data));
         }
         else if(option === "lt"){
-            fetch(`http://localhost:3000/rating-less?rating=${ratingValue}`)
+            fetch(`${import.meta.env.VITE_baseURL}/rating-less?rating=${ratingValue}`)
                 .then(res => res.json())
                 .then(data => setMovies(data));
         }
