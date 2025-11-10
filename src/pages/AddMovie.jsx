@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 
 const AddMovie = () => {
-    const {setLoading} = useAuth();
+    const {setLoading, user} = useAuth();
     const handleAddMovie = e => {
         e.preventDefault();
         setLoading(true);
@@ -25,7 +25,8 @@ const AddMovie = () => {
         fetch("http://localhost:3000/movies", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                authorization: `Bearer ${user.accessToken}`
             },
             body: JSON.stringify(newMovie)
         })

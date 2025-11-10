@@ -9,7 +9,11 @@ const MyCollections = () => {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
         if(user?.email){
-            fetch(`http://localhost:3000/my-collection?email=${user.email}`)
+            fetch(`http://localhost:3000/my-collection?email=${user.email}`, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     setMovies(data);
@@ -31,6 +35,9 @@ const MyCollections = () => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:3000/movies/${id}`, {
                     method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`
+                    }
                 })
                     .then(res => res.json())
                     .then(data => {

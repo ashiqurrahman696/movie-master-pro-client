@@ -4,7 +4,7 @@ import NotFound404 from "./NotFound404";
 import useAuth from "../hooks/useAuth";
 
 const UpdateMovie = () => {
-    const {setLoading} = useAuth();
+    const {setLoading, user} = useAuth();
     const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
 
     if(_id === undefined){
@@ -32,7 +32,8 @@ const UpdateMovie = () => {
         fetch(`http://localhost:3000/movies/${_id}`, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                authorization: `Bearer ${user.accessToken}`
             },
             body: JSON.stringify(updatedMovie)
         })
