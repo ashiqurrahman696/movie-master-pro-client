@@ -2,9 +2,11 @@ import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
 import NotFound404 from "./NotFound404";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateMovie = () => {
     const {setLoading, user} = useAuth();
+    const axiosSecure = useAxiosSecure();
     const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
 
     if(_id === undefined){
@@ -29,17 +31,9 @@ const UpdateMovie = () => {
             country: form.country.value,
         };
 
-        fetch(`http://localhost:3000/movies/${_id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${user.accessToken}`
-            },
-            body: JSON.stringify(updatedMovie)
-        })
-            .then(res => res.json())
+        axiosSecure.patch(`/movies/${_id}`, updatedMovie)
             .then(data => {
-                if(data.modifiedCount){
+                if(data.data.modifiedCount){
                     setLoading(false);
                     toast.success("Movie updated successfully");
                 }

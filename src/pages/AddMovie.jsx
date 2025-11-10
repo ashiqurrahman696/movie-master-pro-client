@@ -1,8 +1,10 @@
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddMovie = () => {
     const {setLoading, user} = useAuth();
+    const axiosSecure = useAxiosSecure();
     const handleAddMovie = e => {
         e.preventDefault();
         setLoading(true);
@@ -22,17 +24,9 @@ const AddMovie = () => {
             addedBy: form.added_by.value,
             createdAt: new Date(),
         }
-        fetch("http://localhost:3000/movies", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${user.accessToken}`
-            },
-            body: JSON.stringify(newMovie)
-        })
-            .then(res => res.json())
+        axiosSecure.post("/movies", newMovie)
             .then(data => {
-                if(data.insertedId){
+                if(data.data.insertedId){
                     setLoading(false);
                     form.reset();
                     toast.success("Movie added successfully");

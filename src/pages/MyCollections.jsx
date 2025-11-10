@@ -3,22 +3,18 @@ import useAuth from "../hooks/useAuth";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyCollections = () => {
     const {user} = useAuth();
     const [movies, setMovies] = useState([]);
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
         if(user?.email){
-            fetch(`http://localhost:3000/my-collection?email=${user.email}`, {
-                headers: {
-                    authorization: `Bearer ${user.accessToken}`
-                }
-            })
-                .then(res => res.json())
+            axiosSecure.get(`/my-collection?email=${user.email}`)
                 .then(data => {
-                    setMovies(data);
-                    console.log(data);
-                })
+                    setMovies(data.data);
+                });
         }
     }, [user]);
 
@@ -33,15 +29,9 @@ const MyCollections = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/movies/${id}`, {
-                    method: "DELETE",
-                    headers: {
-                        authorization: `Bearer ${user.accessToken}`
-                    }
-                })
-                    .then(res => res.json())
+                axiosSecure.delete(`/movies/${id}`)
                     .then(data => {
-                        if(data.deletedCount){
+                        if(data.data.deletedCount){
                             Swal.fire({
                                 title: "Movie removed!",
                                 text: "Your movie has been removed.",

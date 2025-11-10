@@ -4,9 +4,11 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { addToWatchlist } from "../utils/localStorage";
 import NotFound404 from "./NotFound404";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MovieDetail = () => {
     const {user} = useAuth();
+    const axiosSecure = useAxiosSecure();
     const {_id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy} = useLoaderData();
 
     if(_id === undefined){
@@ -28,12 +30,9 @@ const MovieDetail = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/movies/${id}`, {
-                    method: "DELETE",
-                })
-                    .then(res => res.json())
+                axiosSecure.delete(`http://localhost:3000/movies/${id}`)
                     .then(data => {
-                        if(data.deletedCount){
+                        if(data.data.deletedCount){
                             Swal.fire({
                                 title: "Movie removed!",
                                 text: "Your movie has been removed.",
