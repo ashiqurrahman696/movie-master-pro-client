@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
                 Component: AllMovies,
             },
             {
-                path: "/movies/my-collection",
+                path: "/my-collection",
                 element: <PrivateRoute>
                     <MyCollections/>
                 </PrivateRoute>

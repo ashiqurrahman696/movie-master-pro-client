@@ -32,7 +32,7 @@ const Navbar = () => {
         </li>
         {user && <>
             <li>
-                <NavLink to="/movies/my-collection">My Collection</NavLink>
+                <NavLink to="/my-collection">My Collection</NavLink>
             </li>
             <li>
                 <NavLink to="/add-movie">Add Movie</NavLink>
