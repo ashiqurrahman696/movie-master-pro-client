@@ -4,6 +4,7 @@ import Stats from "../components/Stats";
 import TopRatedMovies from "../components/TopRatedMovies";
 import RecentMovies from "../components/RecentMovies";
 import AboutPlatform from "../components/AboutPlatform";
+import Genre from "../components/Genre";
 
 const Home = () => {
     const movies = useLoaderData();
@@ -13,6 +14,7 @@ const Home = () => {
             <Stats movies={movies} />
             <TopRatedMovies/>
             <RecentMovies/>
+            <Genre/>
             <AboutPlatform/>
         </div>
     );
