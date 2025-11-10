@@ -50,7 +50,7 @@ const Login = () => {
                     email: userInfo.email,
                     image: userInfo.photoURL
                 }
-                fetch("http://localhost:3000/users", {
+                fetch(`${import.meta.env.VITE_baseURL}/users`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
