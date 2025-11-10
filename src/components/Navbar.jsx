@@ -65,7 +65,7 @@ const Navbar = () => {
                         </div>
                         <Link to="/" className="btn btn-ghost text-xl">
                             <img src={logo} className="w-10" />
-                            <h2 className="text-xl font-semibold">MovieMaster Pro</h2>
+                            <h2 className="text-xl max-sm:hidden font-semibold">MovieMaster Pro</h2>
                         </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
