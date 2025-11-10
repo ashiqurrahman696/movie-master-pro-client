@@ -9,6 +9,7 @@ import AllMovies from "../pages/AllMovies";
 import MovieDetail from "../pages/MovieDetail";
 import UpdateMovie from "../pages/UpdateMovie";
 import MyCollections from "../pages/MyCollections";
+import MyWatchList from "../pages/MyWatchList";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: "/login",
                 Component: Login,
+            },
+            {
+                path: "/my-watchlist",
+                Component: MyWatchList,
             },
             {
                 path: "/movies",

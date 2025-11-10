@@ -27,6 +27,9 @@ const Navbar = () => {
         <li>
             <NavLink to="/movies">All Movies</NavLink>
         </li>
+        <li>
+            <NavLink to="/my-watchlist">My Watchlist</NavLink>
+        </li>
         {user && <>
             <li>
                 <NavLink to="/movies/my-collection">My Collection</NavLink>
