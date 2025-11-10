@@ -1,8 +1,11 @@
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const AddMovie = () => {
+    const {setLoading} = useAuth();
     const handleAddMovie = e => {
         e.preventDefault();
+        setLoading(true);
         const form = e.target;
         const newMovie = {
             title: form.title.value,
@@ -29,6 +32,7 @@ const AddMovie = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.insertedId){
+                    setLoading(false);
                     form.reset();
                     toast.success("Movie added successfully");
                 }
