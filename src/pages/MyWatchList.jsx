@@ -1,4 +1,16 @@
+import { useEffect, useState } from "react";
+import { getWatchlist } from "../utils/localStorage";
+import { useLoaderData } from "react-router";
+
 const MyWatchList = () => {
+    const [watchlist, setWatchlist] = useState([]);
+    const data = useLoaderData();
+    console.log(data)
+    useEffect(() => {
+        const wlist = getWatchlist();
+        const myWatchlist = data.filter(movie => wlist.includes(movie._id));
+        setWatchlist(myWatchlist);
+    }, []);
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <h1 className="text-center font-semibold text-4xl">My Watchlist</h1>
@@ -13,14 +25,14 @@ const MyWatchList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>The Lion King</td>
+                        {watchlist.map((movie, index) => <tr key={movie._id}>
+                            <th>{index + 1}</th>
+                            <td>{movie.title}</td>
                             <td>
-                                <img src="https://upload.wikimedia.org/wikipedia/en/9/9d/Disney_The_Lion_King_2019.jpg" className="w-12" alt="The Lion King" />
+                                <img src={movie.posterUrl} className="w-12" alt={movie.title} />
                             </td>
-                            <td>Animation</td>
-                        </tr>
+                            <td>{movie.genre}</td>
+                        </tr>)}
                     </tbody>
                 </table>
             </div>

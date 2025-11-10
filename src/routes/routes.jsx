@@ -32,6 +32,7 @@ export const router = createBrowserRouter([
             {
                 path: "/my-watchlist",
                 Component: MyWatchList,
+                loader: () => fetch("http://localhost:3000/movies")
             },
             {
                 path: "/movies",

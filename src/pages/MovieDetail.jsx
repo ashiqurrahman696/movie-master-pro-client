@@ -2,10 +2,15 @@ import { Link, useLoaderData } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { addToWatchlist } from "../utils/localStorage";
 
 const MovieDetail = () => {
     const {user} = useAuth();
     const {_id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy} = useLoaderData();
+
+    const handleAddToWatchlist = id => {
+        addToWatchlist(id);
+    }
 
     const handleDeleteMovie = id => {
         Swal.fire({
@@ -52,10 +57,13 @@ const MovieDetail = () => {
                 <p><strong>Language:</strong> {language}</p>
                 <p><strong>Country:</strong> {country}</p>
                 <p><strong>Added by:</strong> {addedBy}</p>
-                {user?.email === addedBy && <div className="flex gap-2">
-                    <Link to={`/movies/update/${_id}`} className="btn btn-info">Edit</Link>
-                    <button onClick={() => handleDeleteMovie(_id)} className="btn btn-error">Delete</button>
-                </div>}
+                <div className="flex gap-2">
+                    <button onClick={() => handleAddToWatchlist(_id)} className="btn btn-accent">Add to watchlist</button>
+                    {user?.email === addedBy && <>
+                        <Link to={`/movies/update/${_id}`} className="btn btn-info">Edit</Link>
+                        <button onClick={() => handleDeleteMovie(_id)} className="btn btn-error">Delete</button>
+                    </>}
+                </div>
             </div>
         </div>
     );
