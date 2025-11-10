@@ -13,7 +13,7 @@ const MovieCard = ({movie}) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{title} ({releaseYear})</h2>
-                <p className="badge badge-accent">{genre}</p>
+                <p className="badge badge-accent flex-none">{genre}</p>
                 <div className="flex items-center gap-2">
                     <FaStar/>
                     <p>{rating}</p>
