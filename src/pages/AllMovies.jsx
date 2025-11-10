@@ -29,7 +29,8 @@ const AllMovies = () => {
 
     const filterByGenre = (e, genre) => {
         e.classList.toggle("bg-primary");
-        if(e.classList.contains("bg-primary")){
+        e.classList.toggle("text-white");
+        if (e.classList.contains("bg-primary") || e.classList.contains("text-white")){
             setSelectedGenres([...selectedGenres, genre]);
             
         }
