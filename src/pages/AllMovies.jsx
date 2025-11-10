@@ -54,7 +54,7 @@ const AllMovies = () => {
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <h1 className="text-center font-semibold text-4xl">All Movies</h1>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-start">
                 <div>
                     <h2 className="font-semibold text-xl mb-4">Filter by Rating</h2>
                     <select className="select w-full" onChange={(e) => setOption(e.target.value)}>
