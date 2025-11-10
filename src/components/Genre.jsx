@@ -1,30 +1,6 @@
+import { genres } from "../utils/genres";
+
 const Genre = () => {
-    const genres = [
-        {
-            id: 1,
-            name: "Sci-Fi",
-        },
-        {
-            id: 2,
-            name: "Drama",
-        },
-        {
-            id: 3,
-            name: "Thriller",
-        },
-        {
-            id: 4,
-            name: "Animation",
-        },
-        {
-            id: 5,
-            name: "Romance",
-        },
-        {
-            id: 6,
-            name: "Musical",
-        },
-    ];
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <h1 className="text-center font-semibold text-4xl">Genres</h1>
