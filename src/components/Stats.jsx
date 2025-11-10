@@ -13,7 +13,7 @@ const Stats = ({movies}) => {
     }, [])
     return (
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-center items-center" data-aos="fade-left">
-            <div className="flex gap-5 flex-wrap">
+            <div className="flex gap-5 flex-wrap justify-center">
                 <div className="card bg-base-300 w-80 shadow-sm">
                     <div className="card-body flex-row items-center gap-4">
                         <BiCameraMovie size={56} />
