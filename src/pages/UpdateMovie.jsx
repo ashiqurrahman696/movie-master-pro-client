@@ -1,8 +1,13 @@
 import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
+import NotFound404 from "./NotFound404";
 
 const UpdateMovie = () => {
     const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
+
+    if(_id === undefined){
+        return <NotFound404/>;
+    }
 
     const handleUpdateMovie = e => {
         e.preventDefault();
