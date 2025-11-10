@@ -65,7 +65,7 @@ const AllMovies = () => {
                     <input type="number" name="rating" onInput={(e) => setRatingValue(Number(e.target.value))} className="input w-full mt-2 mb-4" />
                     <button onClick={applyRating} className="btn btn-primary">Apply Rating</button>
                     <h2 className="font-semibold text-xl my-4">Filter by Genres</h2>
-                    <ul className="bg-base-300 rounded-box w-full p-4 flex md:flex-col flex-wrap justify-center gap-4">
+                    <ul className="bg-base-300 rounded-box w-full p-4 flex sm:flex-col flex-wrap justify-center gap-4">
                         {genres.map(genre => <li onClick={(e) => filterByGenre(e.target, genre.name)} key={genre.id} className={`duration-300 p-2 rounded cursor-pointer flex items-center gap-4`}>{genre.name}</li>)}
                     </ul>
                 </div>
