@@ -43,7 +43,7 @@ const AllMovies = () => {
     const fetchMoviesByGenre = () => {
         const query = selectedGenres.length ? `?genres=${encodeURIComponent(JSON.stringify(selectedGenres))}` : "";
 
-        fetch(`http://localhost:3000/movie-by-genre${query}`)
+        fetch(`${import.meta.env.VITE_baseURL}/movie-by-genre${query}`)
             .then(res => res.json())
             .then(data => setMovies(data));
     }
