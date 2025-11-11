@@ -12,3 +12,6 @@ MovieMaster Pro is an ultimate hub for discovering, reviewing, and managing ever
 - Personal watchlists.
 - Responsive UI, and dark mode support.
 - Integration with MongoDB.
+
+## Site URL
+[https://moviemaster-pro.netlify.app/](https://moviemaster-pro.netlify.app/)
