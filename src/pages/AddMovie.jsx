@@ -7,8 +7,24 @@ const AddMovie = () => {
     const axiosSecure = useAxiosSecure();
     const handleAddMovie = e => {
         e.preventDefault();
-        setLoading(true);
         const form = e.target;
+        if (!form.title.value || 
+            !form.genre.value || 
+            !form.release_year.value || 
+            !form.director.value || 
+            !form.cast.value || 
+            !form.rating.value || 
+            !form.duration.value || 
+            !form.plot_summary.value || 
+            !form.poster_url.value || 
+            !form.language.value || 
+            !form.country.value || 
+            !form.added_by.value
+        ) {
+            toast.error("Please fill up all field");
+            return;
+        }
+        setLoading(true);
         const newMovie = {
             title: form.title.value,
             genre: form.genre.value,
@@ -26,12 +42,13 @@ const AddMovie = () => {
         }
         axiosSecure.post("/movies", newMovie)
             .then(data => {
+                setLoading(false);
                 if(data.data.insertedId){
-                    setLoading(false);
                     form.reset();
                     toast.success("Movie added successfully");
                 }
             }).catch(error => {
+                setLoading(false);
                 toast.error(error.code);
             });
     }
