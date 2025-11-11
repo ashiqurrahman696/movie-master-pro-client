@@ -3,6 +3,7 @@ import { Link } from "react-router";
 const NotFound404 = () => {
     return (
         <div className="flex items-center justify-center bg-gradient-to-b from-base-200 to-base-300 p-6 min-h-screen">
+            <title>404 Not Found</title>
             <div className="max-w-4xl w-full rounded-2xl shadow-2xl bg-base-100 overflow-hidden grid grid-cols-1 md:grid-cols-2">
                 {/* Left: Illustration */}
                 <div className="flex items-center justify-center p-8 bg-gradient-to-tr from-primary/10 via-secondary/5 to-transparent">

@@ -49,6 +49,7 @@ const MyCollections = () => {
     }
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
+            <title>My Collection</title>
             <h1 className="text-center font-semibold text-4xl">My Collection</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
