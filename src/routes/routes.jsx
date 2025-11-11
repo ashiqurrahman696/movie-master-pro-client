@@ -64,10 +64,10 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_baseURL}/movies/${params.id}`), 
                 errorElement: <NotFound404/>
             },
+            {
+                path: "*",
+                Component: NotFound404,
+            },
         ],
-    },
-    {
-        path: "*",
-        Component: NotFound404,
     },
 ]);
