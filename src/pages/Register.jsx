@@ -100,7 +100,6 @@ const Register = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
                         setUser(userInfo);
                         setLoading(false);
                         toast.success("Google signup successful");

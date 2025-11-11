@@ -5,7 +5,6 @@ import { useLoaderData } from "react-router";
 const MyWatchList = () => {
     const [watchlist, setWatchlist] = useState([]);
     const data = useLoaderData();
-    console.log(data)
     useEffect(() => {
         const wlist = getWatchlist();
         const myWatchlist = data.filter(movie => wlist.includes(movie._id));

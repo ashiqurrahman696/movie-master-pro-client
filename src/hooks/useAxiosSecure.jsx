@@ -23,7 +23,6 @@ const useAxiosSecure = () => {
         }, err => {
             const status = err.status;
             if(status === 401 || status === 403){
-                console.log("Logout user for bad request");
                 signOutUser().then(() => {
                     navigate("/login")
                 });
