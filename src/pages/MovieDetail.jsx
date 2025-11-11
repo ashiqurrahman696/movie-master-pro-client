@@ -30,7 +30,7 @@ const MovieDetail = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`http://localhost:3000/movies/${id}`)
+                axiosSecure.delete(`${import.meta.env.VITE_baseURL}/movies/${id}`)
                     .then(data => {
                         if(data.data.deletedCount){
                             Swal.fire({
