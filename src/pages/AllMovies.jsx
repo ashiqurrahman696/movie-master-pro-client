@@ -1,29 +1,44 @@
 import MovieCard from "../components/MovieCard";
 import { useEffect, useState } from "react";
 import { genres } from "../utils/genres";
+import useAuth from "../hooks/useAuth";
+import Loader from "../components/Loader";
 
 const AllMovies = () => {
+    const {loading, setLoading} = useAuth();
     const [movies, setMovies] = useState([]);
     const [ratingValue, setRatingValue] = useState(0);
     const [option, setOption] = useState("");
     const [selectedGenres, setSelectedGenres] = useState([]);
 
     useEffect(() => {
+        setLoading(true);
         fetch(`${import.meta.env.VITE_baseURL}/movies`)
             .then(res => res.json())
-            .then(data => setMovies(data));
+            .then(data => {
+                setMovies(data);
+                setLoading(false);
+            });
     }, []);
 
     const applyRating = () => {
         if(option === "gt"){
+            setLoading(true);
             fetch(`${import.meta.env.VITE_baseURL}/rating-greater?rating=${ratingValue}`)
                 .then(res => res.json())
-                .then(data => setMovies(data));
+                .then(data => {
+                    setMovies(data);
+                    setLoading(false);
+                });
         }
         else if(option === "lt"){
+            setLoading(true);
             fetch(`${import.meta.env.VITE_baseURL}/rating-less?rating=${ratingValue}`)
                 .then(res => res.json())
-                .then(data => setMovies(data));
+                .then(data => {
+                    setMovies(data);
+                    setLoading(false);
+                });
         }
     }
 
@@ -41,11 +56,15 @@ const AllMovies = () => {
     }
 
     const fetchMoviesByGenre = () => {
+        setLoading(true)
         const query = selectedGenres.length ? `?genres=${encodeURIComponent(JSON.stringify(selectedGenres))}` : "";
 
         fetch(`${import.meta.env.VITE_baseURL}/movie-by-genre${query}`)
             .then(res => res.json())
-            .then(data => setMovies(data));
+            .then(data => {
+                setMovies(data);
+                setLoading(false);
+            });
     }
 
     useEffect(() => {
@@ -72,7 +91,9 @@ const AllMovies = () => {
                     </ul>
                 </div>
                 <div className="grid lg:col-span-2 xl:col-span-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-                    {movies.map(movie => <MovieCard key={movie._id} movie={movie} />)}
+                    {loading ? <div className="col-span-full">
+                        <Loader/>
+                    </div> : movies.map(movie => <MovieCard key={movie._id} movie={movie} />)}
                 </div>
             </div>
         </div>
