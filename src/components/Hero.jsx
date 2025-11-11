@@ -3,8 +3,15 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useEffect, useState } from 'react';
 
-const Hero = ({movies}) => {
+const Hero = () => {
+    const [movies, setMovies] = useState([]);
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_baseURL}/top-movies`).then(res => res.json()).then(data => {
+            setMovies(data);
+        });
+    }, []);
     return (
         <div>
             <Swiper

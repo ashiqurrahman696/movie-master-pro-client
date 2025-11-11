@@ -19,7 +19,7 @@ const Home = () => {
     }, []);
     return (
         <div>
-            <Hero movies={movies} />
+            <Hero />
             <Stats movies={movies} />
             <TopRatedMovies/>
             <RecentMovies/>
