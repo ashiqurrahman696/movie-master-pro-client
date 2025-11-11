@@ -1,13 +1,21 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import NotFound404 from "./NotFound404";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useEffect } from "react";
 
 const UpdateMovie = () => {
     const {setLoading, user} = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     const { _id, title, genre, releaseYear, director, cast, rating, duration, plotSummary, posterUrl, language, country, addedBy } = useLoaderData();
+
+    useEffect(() => {
+        if (user?.email !== addedBy) {
+            navigate(-1);
+        }
+    }, [user, addedBy, navigate]);
 
     if(_id === undefined){
         return <NotFound404/>;
