@@ -48,7 +48,7 @@ const MovieDetail = () => {
     }
     return (
         <div className="max-w-7xl mx-auto px-4 py-6 space-y-5">
-            <div>{title}</div>
+            <tile>{title}</div>
             <div className="grid md:grid-cols-2 gap-5 place-items-center">
                 <img src={posterUrl} className="w-full rounded-md" />
                 <div className="space-y-4 w-full">
