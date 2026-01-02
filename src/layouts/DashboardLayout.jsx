@@ -3,8 +3,11 @@ import useAuth from "../hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 import { GoHome } from "react-icons/go";
 import { MdOutlineMovie } from "react-icons/md";
+import { BiVideoPlus } from "react-icons/bi";
+import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+    const [role] = useRole();
     const { user, signOutUser, setUser } = useAuth();
     const handleLogOut = () => {
         signOutUser().then(() => {
@@ -71,6 +74,14 @@ const DashboardLayout = () => {
                                 <span className="is-drawer-close:hidden">Movie List</span>
                             </Link>
                         </li>
+                        {role === "admin" &&
+                            <li>
+                            <Link to="/dashboard/movie-list" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Movie">
+                                {/* Videoplus icon */}
+                                <BiVideoPlus />
+                                <span className="is-drawer-close:hidden">Add Movie</span>
+                            </Link>
+                        </li>}
                     </ul>
                 </div>
             </div>

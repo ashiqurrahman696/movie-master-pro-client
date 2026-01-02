@@ -45,10 +45,7 @@ const MovieList = () => {
         }
     return (
         <div className="space-y-4">
-            <div className="flex flex-wrap gap-4 items-center justify-between">
-                <h2 className="text-5xl">Movie List</h2>
-                <Link to="/dashboard/add-movie" className="btn btn-accent">Add New Movie</Link>
-            </div>
+            <h2 className="text-5xl">Movie List</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
