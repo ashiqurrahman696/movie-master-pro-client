@@ -10,16 +10,17 @@ const AllMovies = () => {
     const [ratingValue, setRatingValue] = useState(0);
     const [option, setOption] = useState("");
     const [selectedGenres, setSelectedGenres] = useState([]);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         setLoading(true);
-        fetch(`${import.meta.env.VITE_baseURL}/movies`)
+        fetch(`${import.meta.env.VITE_baseURL}/movies?searchText=${searchText}`)
             .then(res => res.json())
             .then(data => {
                 setMovies(data);
                 setLoading(false);
             });
-    }, []);
+    }, [searchText, setLoading]);
 
     const applyRating = () => {
         if(option === "gt"){
@@ -71,6 +72,8 @@ const AllMovies = () => {
         fetchMoviesByGenre()
     }, [selectedGenres]);
 
+    console.log(searchText);
+
     return (
         <div className="space-y-5 max-w-7xl mx-auto px-4 py-6">
             <title>All Movies</title>
@@ -91,6 +94,9 @@ const AllMovies = () => {
                     </ul>
                 </div>
                 <div className="grid lg:col-span-2 xl:col-span-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+                    <div className="col-span-full">
+                        <input className="input w-full" placeholder="Search movies" onChange={(e) => setSearchText(e.target.value)} />
+                    </div>
                     {loading ? <div className="col-span-full">
                         <Loader/>
                     </div> : movies.map(movie => <MovieCard key={movie._id} movie={movie} />)}
