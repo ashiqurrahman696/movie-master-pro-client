@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateProfile = () => {
     const { user, updateUser, setLoading } = useAuth();
@@ -10,22 +11,22 @@ const UpdateProfile = () => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
-        const photo = form.photo.value;
-        console.log(name, photo);
+        const image = form.image.value;
+        console.log(name, image);
 
         if (name === "") {
             toast.error("Name required");
             return;
         }
 
-        else if (photo === "") {
+        else if (image === "") {
             toast.error("Photo URL required");
             return;
         }
 
-        updateUser(name, photo).then(() => {
+        updateUser(name, image).then(() => {
             setLoading(false);
-            navigate("/my-profile");
+            navigate("/dashboard/my-profile");
         }).catch(error => {
             toast.error(error.code);
         });
@@ -42,7 +43,7 @@ const UpdateProfile = () => {
                         </div>
                         <div>
                             <label className="label">Photo URL</label>
-                            <input type="text" defaultValue={photoURL} name="photo" className="input w-full mt-2" placeholder="Photo URL" />
+                            <input type="text" defaultValue={photoURL} name="image" className="input w-full mt-2" placeholder="Photo URL" />
                         </div>
                         <button type="submit" className="btn btn-neutral mt-4">Update</button>
                     </form>
