@@ -4,8 +4,10 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useRole from "../../hooks/useRole";
 
 const MovieList = () => {
+    const [role] = useRole();
     const axiosSecure = useAxiosSecure();
     const {data: movies = [], refetch} = useQuery({
         queryKey: ['movies'],
@@ -59,7 +61,7 @@ const MovieList = () => {
                             <th>Release Year</th>
                             <th>Language</th>
                             <th>Country</th>
-                            <th>Actions</th>
+                            {role === "admin" && <th>Actions</th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -74,12 +76,12 @@ const MovieList = () => {
                             <td>{movie.releaseYear}</td>
                             <td>{movie.language}</td>
                             <td>{movie.country}</td>
-                            <td>
+                            {role === "admin" && <td>
                                 <div className="flex gap-2">
                                     <Link to={`/dashboard/update-movie/${movie._id}`} className="btn btn-info">Update</Link>
                                     <button onClick={() => handleDeleteMovie(movie._id)} className="btn btn-error">Delete</button>
                                 </div>
-                            </td>
+                            </td>}
                         </tr>)}
                     </tbody>
                 </table>

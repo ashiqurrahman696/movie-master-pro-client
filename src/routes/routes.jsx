@@ -100,9 +100,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "movie-list",
-                element: <AdminRoute>
-                    <MovieList/>
-                </AdminRoute>
+                Component: MovieList
             },
             {
                 path: "add-movie",
