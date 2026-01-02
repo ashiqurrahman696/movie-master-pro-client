@@ -43,7 +43,6 @@ const AddNewMovie = () => {
         axiosSecure.post("/movies", newMovie)
             .then(data => {
                 setLoading(false);
-                console.log(data);
                 if(data.data.insertedId){
                     form.reset();
                     toast.success("Movie added successfully");
