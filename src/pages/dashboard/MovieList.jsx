@@ -1,15 +1,48 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const MovieList = () => {
-    const {data: movies = []} = useQuery({
+    const axiosSecure = useAxiosSecure();
+    const {data: movies = [], refetch} = useQuery({
         queryKey: ['movies'],
         queryFn: async() => {
             const result = await axios(`${import.meta.env.VITE_baseURL}/movies`);
             return result.data;
         }
     });
+
+    const handleDeleteMovie = id => {
+            Swal.fire({
+                title: "Are you sure to delete?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "dodgerblue",
+                cancelButtonColor: "crimson",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/movies/${id}`)
+                        .then(data => {
+                            if(data.data.deletedCount){
+                                Swal.fire({
+                                    title: "Movie removed!",
+                                    text: "Your movie has been removed.",
+                                    icon: "success"
+                                });
+                                refetch();
+                            }
+                        })
+                        .catch(error => {
+                            toast.error(error);
+                        })
+                }
+            });
+        }
     return (
         <div className="space-y-4">
             <div className="flex flex-wrap gap-4 items-center justify-between">
@@ -47,7 +80,7 @@ const MovieList = () => {
                             <td>
                                 <div className="flex gap-2">
                                     <button className="btn btn-info">Update</button>
-                                    <button className="btn btn-error">Delete</button>
+                                    <button onClick={() => handleDeleteMovie(movie._id)} className="btn btn-error">Delete</button>
                                 </div>
                             </td>
                         </tr>)}
