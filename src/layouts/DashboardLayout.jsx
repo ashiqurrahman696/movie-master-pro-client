@@ -76,7 +76,7 @@ const DashboardLayout = () => {
                         </li>
                         {role === "admin" &&
                             <li>
-                            <Link to="/dashboard/movie-list" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Movie">
+                            <Link to="/dashboard/add-movie" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Movie">
                                 {/* Videoplus icon */}
                                 <BiVideoPlus />
                                 <span className="is-drawer-close:hidden">Add Movie</span>
