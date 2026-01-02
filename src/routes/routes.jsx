@@ -15,6 +15,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../pages/dashboard/DashboardHome";
 import Profile from "../pages/dashboard/Profile";
 import UpdateProfile from "../pages/dashboard/UpdateProfile";
+import AdminRoute from "./AdminRoute";
+import MovieList from "../pages/dashboard/MovieList";
 
 export const router = createBrowserRouter([
     {
@@ -93,6 +95,12 @@ export const router = createBrowserRouter([
             {
                 path: "update-profile",
                 Component: UpdateProfile,
+            },
+            {
+                path: "movie-list",
+                element: <AdminRoute>
+                    <MovieList/>
+                </AdminRoute>
             },
         ],
     },
