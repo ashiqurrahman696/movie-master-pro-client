@@ -79,7 +79,7 @@ const MovieList = () => {
                             <td>{movie.country}</td>
                             <td>
                                 <div className="flex gap-2">
-                                    <button className="btn btn-info">Update</button>
+                                    <Link to={`/dashboard/update-movie/${movie._id}`} className="btn btn-info">Update</Link>
                                     <button onClick={() => handleDeleteMovie(movie._id)} className="btn btn-error">Delete</button>
                                 </div>
                             </td>

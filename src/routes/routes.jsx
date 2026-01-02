@@ -18,6 +18,7 @@ import UpdateProfile from "../pages/dashboard/UpdateProfile";
 import AdminRoute from "./AdminRoute";
 import MovieList from "../pages/dashboard/MovieList";
 import AddNewMovie from "../pages/dashboard/AddNewMovie";
+import MovieUpdate from "../pages/dashboard/MovieUpdate";
 
 export const router = createBrowserRouter([
     {
@@ -108,6 +109,13 @@ export const router = createBrowserRouter([
                 element: <AdminRoute>
                     <AddNewMovie/>
                 </AdminRoute>
+            },
+            {
+                path: "update-movie/:id",
+                element: <AdminRoute>
+                    <MovieUpdate/>
+                </AdminRoute>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_baseURL}/movies/${params.id}`)
             },
         ],
     },
