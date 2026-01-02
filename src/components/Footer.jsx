@@ -6,7 +6,7 @@ import { BsTwitterX } from "react-icons/bs";
 const Footer = () => {
     return (
         <div className="bg-neutral px-4 py-10 text-white">
-            <footer className="footer md:grid-cols-3 max-w-7xl mx-auto">
+            {/* <footer className="footer md:grid-cols-3 max-w-7xl mx-auto">
                 <aside>
                     <img src={logo} alt="MovieMaster Pro logo" className="w-10" />
                     <h2 className="text-2xl font-semibold">MovieMaster Pro</h2>
@@ -41,7 +41,36 @@ const Footer = () => {
             </footer>
             <aside className="mt-8">
                 <p className="text-center">Copyright © {new Date().getFullYear()} - All right reserved by MovieMaster Pro</p>
-            </aside>
+            </aside> */}
+            <footer className="footer footer-horizontal footer-center">
+                <aside>
+                    <img src={logo} alt="MovieMaster Pro logo" className="w-10" />
+                    <h2 className="text-2xl font-semibold">MovieMaster Pro</h2>
+                    <p className="mt-2">
+                        Discover reviews, trailers, showtimes, and personalized recommendations to help you find the perfect movie.
+                    </p>
+                </aside>
+                <nav>
+                    <h6 className="footer-title">Social</h6>
+                    <div className="grid grid-flow-col gap-4">
+                        <Link to="https://facebook.com">
+                            <FaFacebookF size={24} />
+                        </Link>
+                        <Link to="https://x.com">
+                            <BsTwitterX size={24} />
+                        </Link>
+                        <Link to="https://instagram.com">
+                            <FaInstagram size={26} />
+                        </Link>
+                        <Link to="https://youtube.com">
+                            <FaYoutube size={28} />
+                        </Link>
+                    </div>
+                </nav>
+                <aside className="mt-8">
+                    <p className="text-center">Copyright © {new Date().getFullYear()} - All right reserved by MovieMaster Pro</p>
+                </aside>
+            </footer>
         </div>
     );
 };
