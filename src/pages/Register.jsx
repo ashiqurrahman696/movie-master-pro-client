@@ -61,7 +61,8 @@ const Register = () => {
                     const newUser = {
                         name: userInfo.displayName,
                         email: userInfo.email,
-                        image: userInfo.photoURL
+                        image: userInfo.photoURL,
+                        role: "user",
                     }
                     fetch(`${import.meta.env.VITE_baseURL}/users`, {
                         method: "POST",
@@ -89,7 +90,8 @@ const Register = () => {
                 const newUser = {
                     name: userInfo.displayName,
                     email: userInfo.email,
-                    image: userInfo.photoURL
+                    image: userInfo.photoURL,
+                    role: "user"
                 }
                 fetch(`${import.meta.env.VITE_baseURL}/users`, {
                     method: "POST",
