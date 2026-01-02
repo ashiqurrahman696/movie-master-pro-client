@@ -13,6 +13,7 @@ import MyWatchList from "../pages/MyWatchList";
 import NotFound404 from "../pages/NotFound404";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../pages/dashboard/DashboardHome";
+import Profile from "../pages/dashboard/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: DashboardHome,
+            },
+            {
+                path: "my-profile",
+                Component: Profile,
             },
         ],
     },

@@ -1,6 +1,16 @@
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const DashboardLayout = () => {
+    const { user, signOutUser, setUser } = useAuth();
+    const handleLogOut = () => {
+            signOutUser().then(() => {
+                setUser(null);
+            }).catch((error) => {
+                toast.error(error.code);
+            });
+        }
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -11,7 +21,25 @@ const DashboardLayout = () => {
                         {/* Sidebar toggle icon */}
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
                     </label>
-                    <div className="px-4">MovieMaster Pro</div>
+                    <div className="px-4 flex justify-between items-center w-full">
+                        <span>MovieMaster Pro</span>
+                        <div>
+                            {user ? <>
+                                <div tabIndex={0} role="button" className="btn btn-ghost avatar tooltip tooltip-bottom" data-tip={user.displayName}>
+                                    <Link to="/dashboard/my-profile">
+                                        <img
+                                            className="w-10 rounded-full"
+                                            alt={user.displayName}
+                                            src={user.photoURL} />
+                                    </Link>
+                                </div>
+                                <button onClick={handleLogOut} className="btn btn-error">Logout</button>
+                            </> : <>
+                                <Link to="/login" className="btn btn-info">Login</Link>
+                                <Link to="/register" className="btn btn-success">Register</Link>
+                            </>}
+                        </div>
+                    </div>
                 </nav>
                 {/* Page content here */}
                 <div className="p-4">
