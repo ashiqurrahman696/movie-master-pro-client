@@ -14,6 +14,7 @@ import NotFound404 from "../pages/NotFound404";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../pages/dashboard/DashboardHome";
 import Profile from "../pages/dashboard/Profile";
+import UpdateProfile from "../pages/dashboard/UpdateProfile";
 
 export const router = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
             {
                 path: "my-profile",
                 Component: Profile,
+            },
+            {
+                path: "update-profile",
+                Component: UpdateProfile,
             },
         ],
     },
