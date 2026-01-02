@@ -11,6 +11,8 @@ import UpdateMovie from "../pages/UpdateMovie";
 import MyCollections from "../pages/MyCollections";
 import MyWatchList from "../pages/MyWatchList";
 import NotFound404 from "../pages/NotFound404";
+import DashboardLayout from "../layouts/DashboardLayout";
+import DashboardHome from "../pages/dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -67,6 +69,20 @@ export const router = createBrowserRouter([
             {
                 path: "*",
                 Component: NotFound404,
+            },
+        ],
+    },
+
+    // Dashboard routes
+    {
+        path: "/dashboard",
+        element: <PrivateRoute>
+            <DashboardLayout/>
+        </PrivateRoute>,
+        children: [
+            {
+                index: true,
+                Component: DashboardHome,
             },
         ],
     },
