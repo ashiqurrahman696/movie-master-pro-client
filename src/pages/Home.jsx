@@ -8,6 +8,7 @@ import Genre from "../components/Genre";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Newsletter from "../components/Newsletter";
 
 const Home = () => {
     const movies = useLoaderData();
@@ -19,12 +20,13 @@ const Home = () => {
     }, []);
     return (
         <div>
-            <Hero />
+            <Hero/>
             <Stats movies={movies} />
             <TopRatedMovies/>
             <RecentMovies/>
             <Genre/>
             <AboutPlatform/>
+            <Newsletter/>
         </div>
     );
 };
