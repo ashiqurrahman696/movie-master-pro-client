@@ -9,6 +9,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import Newsletter from "../components/Newsletter";
+import FAQ from "../components/FAQ";
 
 const Home = () => {
     const movies = useLoaderData();
@@ -27,6 +28,7 @@ const Home = () => {
             <Genre/>
             <AboutPlatform/>
             <Newsletter/>
+            <FAQ/>
         </div>
     );
 };
