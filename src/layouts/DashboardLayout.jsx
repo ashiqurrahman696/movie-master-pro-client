@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { GoHome } from "react-icons/go";
 import { MdOutlineMovie } from "react-icons/md";
 
@@ -46,6 +46,7 @@ const DashboardLayout = () => {
                 {/* Page content here */}
                 <div className="p-4">
                     <Outlet/>
+                    <ToastContainer/>
                 </div>
             </div>
 

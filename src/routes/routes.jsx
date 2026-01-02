@@ -17,6 +17,7 @@ import Profile from "../pages/dashboard/Profile";
 import UpdateProfile from "../pages/dashboard/UpdateProfile";
 import AdminRoute from "./AdminRoute";
 import MovieList from "../pages/dashboard/MovieList";
+import AddNewMovie from "../pages/dashboard/AddNewMovie";
 
 export const router = createBrowserRouter([
     {
@@ -100,6 +101,12 @@ export const router = createBrowserRouter([
                 path: "movie-list",
                 element: <AdminRoute>
                     <MovieList/>
+                </AdminRoute>
+            },
+            {
+                path: "add-movie",
+                element: <AdminRoute>
+                    <AddNewMovie/>
                 </AdminRoute>
             },
         ],
